@@ -1,6 +1,7 @@
 import React from "react";
 import FuelCalculator from "./components/FuelCalculator";
 import History from "./components/History";
+import "leaflet/dist/leaflet.css";
 
 function App() {
   return (
