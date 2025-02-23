@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/history";
+const API_URL = "https://cost2go.onrender.com/api/history";
 
 export const saveSearch = async (data) => {
   const response = await fetch(`${API_URL}/add`, {
