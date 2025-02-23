@@ -1,15 +1,17 @@
-import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import FuelCalculator from "./components/FuelCalculator";
-import History from "./components/History";
+import LandingPage from "./pages/LandingPage";
+
 import "leaflet/dist/leaflet.css";
 
 function App() {
   return (
-    <div className="p-4">
-      <h1 className="text-3xl font-bold text-center">Fuel Cost Calculator</h1>
-      <FuelCalculator />
-      <History />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/calculate" element={<FuelCalculator />} />
+      </Routes>
+    </Router>
   );
 }
 
