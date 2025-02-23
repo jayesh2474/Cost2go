@@ -1,22 +1,19 @@
-const BASE_URL = "http://localhost:5000/api/fuel";
+const API_URL = "http://localhost:5000/api/history";
 
-export async function fetchFuelPrice() {
-  const response = await fetch(`${BASE_URL}/price`);
-  const data = await response.json();
-  return data.fuelPrice;
-}
-
-export async function saveSearch(searchData) {
-  const response = await fetch(`${BASE_URL}/save`, {
+export const saveSearch = async (data) => {
+  const response = await fetch(`${API_URL}/add`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(searchData),
+    body: JSON.stringify(data),
   });
   return response.json();
-}
+};
 
-export async function fetchSearchHistory() {
-  const response = await fetch(`${BASE_URL}/history`);
-  const data = await response.json();
-  return data;
-}
+export const fetchHistory = async () => {
+  const response = await fetch(API_URL);
+  return response.json();
+};
+
+export const deleteHistoryItem = async (id) => {
+  await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+};

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { fetchSearchHistory } from "../services/api";
+import { fetchHistory } from "../services/api";
 
 function History() {
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
     async function getHistory() {
-      const data = await fetchSearchHistory();
+      const data = await fetchHistory();
       setHistory(data);
     }
     getHistory();
