@@ -1,5 +1,8 @@
 // frontend/src/components/FuelCalculator.js
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase";
 import { saveSearch, fetchHistory, deleteHistoryItem } from "../services/api";
 
 function FuelCalculator() {
@@ -9,6 +12,7 @@ function FuelCalculator() {
   const [fuelNeeded, setFuelNeeded] = useState(null);
   const [totalCost, setTotalCost] = useState(null);
   const [history, setHistory] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function loadHistory() {
@@ -16,7 +20,25 @@ function FuelCalculator() {
       setHistory(data);
     }
     loadHistory();
-  }, []);
+
+    // Handle back button logout
+    const handleBackButton = () => {
+      signOut(auth)
+        .then(() => {
+          console.log("Logged out due to back navigation.");
+          navigate("/auth");
+        })
+        .catch((error) => {
+          console.error("Failed to log out:", error);
+        });
+    };
+
+    window.addEventListener("popstate", handleBackButton);
+
+    return () => {
+      window.removeEventListener("popstate", handleBackButton);
+    };
+  }, [navigate]);
 
   const handleCalculate = async () => {
     if (!distance || !mileage || !fuelPrice) return;
@@ -35,11 +57,27 @@ function FuelCalculator() {
     setHistory(history.filter((_, i) => i !== index));
   };
 
+  const handleLogout = () => {
+    signOut(auth)
+      .then(() => {
+        navigate("/auth");
+      })
+      .catch((error) => {
+        console.error("Logout failed:", error);
+      });
+  };
+
   return (
     <div className="mt-10 p-8 bg-gradient-to-r from-sky-100 to-blue-200 rounded-3xl shadow-2xl max-w-2xl mx-auto">
       <h2 className="text-4xl font-extrabold mb-8 text-center text-indigo-700 drop-shadow-lg">
         🚗 Fuel Cost Calculator
       </h2>
+      <button
+        onClick={handleLogout}
+        className="bg-red-500 text-white py-2 px-6 rounded-xl mb-6 hover:bg-red-600 transition"
+      >
+        Logout
+      </button>
       <div className="space-y-6">
         <input
           type="number"

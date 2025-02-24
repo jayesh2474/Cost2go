@@ -7,7 +7,7 @@ export default function LandingPage() {
   const navigate = useNavigate();
 
   const handleCalculateClick = () => {
-    navigate('/calculate'); // Redirect to calculation page
+    navigate('/auth'); // Redirect to calculation page
   };
 
   return (
