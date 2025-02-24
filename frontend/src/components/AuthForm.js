@@ -114,7 +114,6 @@ function AuthForm() {
   const handleGoogleSignIn = async () => {
     setIsLoading(true);
     try {
-      const result = await signInWithPopup(auth, googleProvider);
       alert("User logged in successfully!");
       navigate("/calculate", { replace: true });
     } catch (error) {
