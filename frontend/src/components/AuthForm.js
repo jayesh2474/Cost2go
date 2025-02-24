@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth } from "../firebase";
+import { auth, googleProvider } from "../firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithPopup,
 } from "firebase/auth";
 import { FaEnvelope, FaLock, FaGasPump, FaCar } from "react-icons/fa";
 
@@ -113,6 +114,8 @@ function AuthForm() {
   const handleGoogleSignIn = async () => {
     setIsLoading(true);
     try {
+      // eslint-disable-next-line no-unused-vars
+      const result = await signInWithPopup(auth, googleProvider);
       alert("User logged in successfully!");
       navigate("/calculate", { replace: true });
     } catch (error) {
