@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { auth, googleProvider } from "../firebase";
+import { auth } from "../firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signInWithPopup,
 } from "firebase/auth";
 import { FaEnvelope, FaLock, FaGasPump, FaCar } from "react-icons/fa";
 
