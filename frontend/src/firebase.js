@@ -2,13 +2,12 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 const firebaseConfig = {
-  apiKey: "AIzaSyDVoJv1C32wJ0yBZ3DpO8gnrI1EgTKJnA8",
-  authDomain: "cost2go-cf0b2.firebaseapp.com",
-  projectId: "cost2go-cf0b2",
-  storageBucket: "cost2go-cf0b2.firebasestorage.app",
-  messagingSenderId: "800760917457",
-  appId: "1:800760917457:web:1026471fdedbb800c6c4f0",
-  measurementId: "G-XJCCKWGE0P",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase app
