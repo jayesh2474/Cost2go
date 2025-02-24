@@ -114,8 +114,7 @@ function AuthForm() {
   const handleGoogleSignIn = async () => {
     setIsLoading(true);
     try {
-      // eslint-disable-next-line no-unused-vars
-      const result = await signInWithPopup(auth, googleProvider);
+      await signInWithPopup(auth, googleProvider);
       alert("User logged in successfully!");
       navigate("/calculate", { replace: true });
     } catch (error) {
